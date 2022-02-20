@@ -31,7 +31,7 @@ var loadSaved = function() {
     $("#17 .description").val(localStorage.getItem("17"));
 }
     
-// function to check the current time against the scheduler tasks time in order to change timeblock styles
+// function that loops through each time block to check the current time against the scheduler tasks time in order to change timeblock styles
 // also runs function that gets previously saved items from local storage
 var auditTime = function() {
 
