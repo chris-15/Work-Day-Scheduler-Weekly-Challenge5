@@ -1,25 +1,24 @@
 // declaring variables to later reference in code
 var currentDate= $("#currentDay");
 var saveButton =$(".saveBtn"); 
-
-// display the current date
-currentDate.text(moment().format("dddd, MMMM Do"));
-
-var currentTime= moment().hour();
+var currentTime= moment().hour(); //variable that sets the current time using moment.js
 console.log(currentTime)
 
+// display the current date using moment.js
+currentDate.text(moment().format("dddd, MMMM Do"));
 
 
 // function to save info in textarea when button is clicked
 saveButton.on("click", function() {
     var time = $(this).parent().attr("id")
     var userText = $(this).siblings(".description").val();
-    console.log(time, userText);
+    // console.log(time, userText);
 
     localStorage.setItem(time, userText);
 })
 
-// load the saved items in local storage so they appear after the page refreshes
+// function to get items from local storage and then add their values to timeblock 
+// saves the users input even after the page refreshes
 var loadSaved = function() {
     $("#9 .description").val(localStorage.getItem("9"));
     $("#10 .description").val(localStorage.getItem("10"));
@@ -32,7 +31,7 @@ var loadSaved = function() {
     $("#17 .description").val(localStorage.getItem("17"));
 }
     
-// checking the current time against the scheduler tasks time in order to change timeblock styles
+// function to check the current time against the scheduler tasks time in order to change timeblock styles
 // also runs function that gets previously saved items from local storage
 var auditTime = function() {
 
@@ -47,10 +46,9 @@ var auditTime = function() {
         } else {
             $(this).addClass("future")
         }
-    })
-
+    });
     loadSaved();
-
 }
 
-auditTime()
+
+auditTime();
